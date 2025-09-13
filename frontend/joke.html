@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Random Joke Generator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f2f2f2;
+      text-align: center;
+      padding: 50px;
+    }
+
+    .joke-container {
+      background: white;
+      border-radius: 10px;
+      padding: 20px;
+      max-width: 500px;
+      margin: 20px auto;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    .joke-text {
+      font-size: 18px;
+      margin: 10px 0;
+    }
+
+    button {
+      margin: 10px;
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      background: #007bff;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #0056b3;
+    }
+
+    .error {
+      color: red;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🤡 Random Joke Generator😜😂</h1>
+  <div class="joke-container" id="jokeBox">
+    <p class="joke-text" id="setup">Click "Get Joke" to start!</p>
+    <p class="joke-text" id="punchline"></p>
+  </div>
+
+  <button onclick="getJoke()">Get Joke</button>
+  <button onclick="getJoke()">Next Joke</button>
+
+  <p class="error" id="error"></p>
+
+  <script>
+    async function getJoke() {
+      const jokeBox = document.getElementById('jokeBox');
+      const setup = document.getElementById('setup');
+      const punchline = document.getElementById('punchline');
+      const error = document.getElementById('error');
+
+      try {
+        error.textContent = ''; // Clear previous errors
+        setup.textContent = 'Loading...';
+        punchline.textContent = '';
+
+        const response = await fetch('https://official-joke-api.appspot.com/random_joke');
+        
+        if (!response.ok) throw new Error('Network response was not ok');
+
+        const joke = await response.json();
+        displayJoke(joke);
+      } catch (err) {
+        setup.textContent = '';
+        punchline.textContent = '';
+        error.textContent = "Couldn't fetch a joke, try again!";
+      }
+    }
+
+    function displayJoke(joke) {
+      document.getElementById('setup').textContent = joke.setup;
+      document.getElementById('punchline').textContent = joke.punchline;
+    }
+  </script>
+
+</body>
+</html>

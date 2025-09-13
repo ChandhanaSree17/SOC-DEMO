@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>jQuery Example</title>
+  <!-- jQuery CDN -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    #box {
+      width: 200px;
+      height: 200px;
+      background: tomato;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Hello... !</h2>
+  <div id="box">Click Me!</div>
+
+  <script>
+    // jQuery code
+    $(document).ready(function() {
+      $("#box").click(function() {
+        $(this).css("background", "skyblue")
+               .text("You Clicked Me!***")
+               .fadeOut(7000)
+               .fadeIn(9000);
+      });
+    });
+  </script>
+
+</body>
+</html>
+

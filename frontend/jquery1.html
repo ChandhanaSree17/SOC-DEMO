@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple To-Do List</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #1372d0;
+      text-align: center;
+      padding: 20px;
+      text-underline-position: below;color: rgb(15, 15, 14);
+    }
+    .container {
+      background: #fff;
+      padding: 20px;
+      border-radius: 1000px;
+      width: 500px;
+      margin: auto;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      
+    }
+    input {
+      padding: 8px;
+      width: 70%;
+    }
+    button {
+      padding: 8px 12px;
+      background: #44e823;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+      margin-top: 15px;
+    }
+    ul li {
+      background: #eee;
+      margin: 5px 0;
+      padding: 8px;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>To-Do List🗒️🖊️</h1>
+    <h2>Tasks</h2>
+    <h3>Add your daily work</h3>
+
+    <input type="text" id="taskInput" placeholder="Enter task">
+    <button onclick="addTask()">Add</button>
+
+    <ul id="taskList"></ul>
+  </div>
+
+  <script>
+    function addTask() {
+      const input = document.getElementById("taskInput");
+      const task = input.value.trim();
+
+      if (task === "") return;
+
+      const li = document.createElement("li");
+      li.textContent = task;
+      document.getElementById("taskList").appendChild(li);
+
+      input.value = "";
+    }
+  </script>
+
+</body>
+</html>
